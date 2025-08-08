@@ -1,0 +1,90 @@
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Trophy } from "lucide-react";
+
+const championsData = [
+  {
+    name: "Fedor Emelianenko",
+    origin: "Russie",
+    disciplines: "Sambo, judo",
+    description: "Considéré comme l'un des meilleurs poids lourds de tous les temps, Fedor a été champion de la PRIDE Fighting Championships et reste une légende du MMA.",
+    avatar: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.NWwwgD-nlebO4YgEJBxJiQHaJ4%3Fpid%3DApi&f=1&ipt=bc20ddbbcac785cc366a7292a923671c5f83a06730d362edab26bb7892570334&ipo=images",
+    aiHint: "male fighter"
+  },
+  {
+    name: "Khabib Nurmagomedov",
+    origin: "Russie (Daghestan)",
+    disciplines: "Sambo, lutte",
+    description: "Champion des poids légers de l'UFC, Khabib est connu pour sa lutte incroyable et son contrôle au sol. Il a un palmarès parfait de 29 victoires.",
+    avatar: "https://a.espncdn.com/i/headshots/mma/players/full/2611557.png",
+    aiHint: "male fighter"
+  },
+  {
+    name: "Andrei Arlovski",
+    origin: "Biélorussie",
+    disciplines: "Sambo, boxe",
+    description: "Ancien champion des poids lourds de l'UFC, Arlovski a eu une carrière longue et réussie, marquée par sa puissance de frappe.",
+    avatar: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.tapology.com%2Fletterbox_images%2F9%2Fdefault%2FAndrei_arlovski.jpg%3F1429314284&f=1&nofb=1&ipt=9cea49100959383d9be8d235e8c42b7f78794f230f0eb70cbb0a1ef479e29693",
+    aiHint: "male fighter"
+  },
+  {
+    name: "Oleg Taktarov",
+    origin: "Russie",
+    disciplines: "Sambo, judo",
+    description: "L'un des premiers combattants à se faire un nom dans le MMA, Taktarov a remporté le premier tournoi UFC en 1995.",
+    avatar: "https://external-content.duckduckgo.com/iu/?u=https%3A%2Frankingmma.com%2Fwp-content%2Fuploads%2F2019%2F11%2Fotaktarov.png&f=1&nofb=1&ipt=796870a9e55f4058c996eeea8b94943597d599871a5a96dd52d929b22457652c",
+    aiHint: "male fighter"
+  },
+  {
+    name: "Roman Dolidze",
+    origin: "Géorgie",
+    disciplines: "Sambo, judo",
+    description: "Actuellement compétiteur à l'UFC, Dolidze est reconnu pour ses compétences en grappling et sa puissance.",
+    avatar: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchampinon.info%2Fimages%2Froman-dolidze_b.jpg&f=1&nofb=1&ipt=e2b33cb181b1d559a499d7d6b7c481fcb15dcd65514b153171b1ec2b13e95d9f",
+    aiHint: "male fighter"
+  },
+  {
+    name: "Islam Makhachev",
+    origin: "Russie (Daghestan)",
+    disciplines: "Sambo, lutte",
+    description: "Champion des poids légers de l'UFC, Makhachev est le protégé de Khabib et a montré une maîtrise impressionnante du combat au sol.",
+    avatar: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.JFY1_HD989KhsEXNcZpxIwHaE8%3Fr%3D0%26pid%3DApi&f=1&ipt=d73ec0d00c72644a765757a616ce887e0fef9f1754ab48cc38b91d763ad06d1f",
+    aiHint: "male fighter"
+  }
+];
+
+export function SamboChampions() {
+  return (
+    <section id="champions-mma" className="py-12 md:py-24 lg:py-32">
+      <div className="container">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <Trophy className="h-12 w-12 text-primary" />
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Champions de Sambo en MMA</h2>
+            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed font-body">
+                Le Sambo a prouvé son efficacité sur la scène mondiale des arts martiaux mixtes, produisant de nombreux combattants d'élite.
+            </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
+          {championsData.map((champion, index) => (
+            <Card key={index} className="flex flex-col items-center text-center p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Avatar className="w-24 h-24 mb-4">
+                <AvatarImage src={champion.avatar} alt={champion.name} data-ai-hint={champion.aiHint} />
+                <AvatarFallback>{champion.name.substring(0, 2)}</AvatarFallback>
+              </Avatar>
+              <CardHeader className="p-0">
+                <CardTitle className="font-headline">{champion.name}</CardTitle>
+                <CardDescription className="text-primary font-semibold">{`${champion.origin} • ${champion.disciplines}`}</CardDescription>
+              </CardHeader>
+              <CardContent className="p-0 mt-4 flex-grow">
+                <p className="text-muted-foreground font-body">{champion.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <p className="text-center text-muted-foreground mt-12 max-w-3xl mx-auto">
+            Ces combattants ont non seulement excellé en sambo, mais ont également réussi à faire la transition vers le MMA avec succès, prouvant l'efficacité de leur formation en sambo dans le sport moderne.
+        </p>
+      </div>
+    </section>
+  );
+}
